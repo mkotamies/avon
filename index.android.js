@@ -20,11 +20,11 @@ var styles = StyleSheet.create({
     flex: 1,
     opacity: 0.95,
     paddingTop:200,
-    backgroundColor:'black'
+    backgroundColor:'#d4edf4'
   },
   textS:{
     textAlign: 'center',
-    color: 'white'
+    color: '#0241e2'
   },
   button:{
     color: 'white',
@@ -78,12 +78,6 @@ class TestClass extends Component {
     }
 
     update(){
-      /*InteractionManager.setDeadline(2)
-      InteractionManager.runAfterInteractions(() => {
-        navigator.geolocation.getCurrentPosition(position => {
-          this.setState({position})
-        })
-      });*/
       navigator.geolocation.watchPosition(position => {
         this.setState({position}), this.checkIfCamera()}, Alert.alert("Ei vielä yhteyttä", "Paina OK ja kokeile uudestaan"),{enableHighAccuracy: true, timeout: 0, maximumAge: 1000})
     }
@@ -95,9 +89,26 @@ class TestClass extends Component {
         warning.play()
       }
     }
+    /*
+    calculate distance between cameras and current position => list distances
+    then map and reduce. call function that check if distance is accepted
+    */
+    getDistance(){
+      const coordinates = [60.2,62]
+
+      if(this.state.position &&
+        list
+        .map(next => this.state.position.coords.latitude <= next)
+        .reduce(this.checkIfAnyTrue)){
+        a = this.state.position.coords.latitude
+        b = this.state.position.coords.longitude
+        c = this.calcCrow()
+      }
+      this.calcCrow()
+    }
     //calculates crow distance
-    calcCrow()
-    {
+    //refactor the code with functional library to make it more readable
+    calcCrow(){
       var R = 6371; // km
       var dLat = this.toRad(62.0-this.state.position.coords.latitude);
       var dLon = this.toRad(24.0-this.state.position.coords.longitude);
